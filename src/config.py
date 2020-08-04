@@ -3,5 +3,5 @@ import os
 
 DEBUG = True
 ADMINS = frozenset([
-    "cobbin@email.com", os.environ.get('ADMINS_EMAIL')
+    os.environ.get('ADMINS_EMAIL')
 ])
