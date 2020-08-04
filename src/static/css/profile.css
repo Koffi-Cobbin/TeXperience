@@ -1,0 +1,67 @@
+ /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+ .row.content {height: 450px}
+ 
+ /* Set black background color, white text and some padding */
+ footer {
+   color: white;
+   padding: 15px;
+ }
+
+ /* ************************************************* */
+ /* THIS SECTION IS FOR THE PROFILE CARD  */
+
+*:before, *:after {
+ box-sizing: inherit;
+} 
+
+.column {
+ float: left;
+ width: 33.3%;
+ margin-bottom: 16px;
+ padding: 0 0px;
+ background-color: white;
+ border-radius: 10px;
+}
+
+/* Needs attention */
+@media screen and (max-width: 650px) {
+ .column {
+   width: 100%;
+   display: block;
+ }
+}
+/* Needs attention */
+.card {
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.containers {
+ padding: 0 16px;
+}
+
+.containers::after, .row::after {
+ content: "";
+ clear: both;
+ display: table;
+}
+/* //////////////////////////////// */
+
+.title {
+ color: grey;
+}
+
+.button {
+ border: none;
+ border-radius: 5px;
+ outline: 0;
+ display: inline-block;
+ padding: 8px;
+ color: white;
+ background-color: #000;
+ text-align: center;
+ cursor: pointer;
+}
+
+.button:hover {
+ background-color: #555;
+}

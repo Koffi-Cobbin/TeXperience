@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>LogIn</title>
+<!-- You can add other css links here-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+ {% endblock %}
+
+{% block body %}
+<br>
+<div class="form-size container">
+    <div class="fcontainer">
+        <h3 style="text-align: center;">Login</h3>
+        <form action="/login" method="post">
+            <h1>
+                <i class="fa fa-user"> </i>
+            </h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+            <div class="form-group">
+                <label for="email">Email</label> 
+                <input class="form-control" type="email" placeholder="Email" name="email" value="{{
+                request.form.email }}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label> 
+                <input class="form-control" type="password" placeholder="password" name="password" value="{{
+                    request.form.password }}">
+            </div>
+            <div style="text-align: right;">
+                <a href="#">lost your password? </a> &nbsp &nbsp &nbsp
+                <a href="{{ url_for('signup') }}" >Don't have an account?</a>
+            </div>
+            <button> Login </button>
+        </form>
+    </div>
+    {% if error %}
+    {% endif %}
+  </div>
+
+{% endblock %}

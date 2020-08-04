@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %} 
+<title>Edit Profile</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="form-size container">
+  <div class="fcontainer">
+    <form action="/edit_profile" method="post"  enctype = "multipart/form-data">
+      <h1>
+        <i class="fa fa-user"> </i>
+      </h1>
+      <br>
+      <label for="name">User name:</label> 
+      <input class="form-control" type="text" placeholder="name" name="name" value="{{name}}">
+      <br>
+      <label for="email">E-mail:</label> 
+      <input class="form-control" type="email" name="email" value="{{email}}" >
+      <br>
+      <label>Select profile image to upload: </label>
+      <input type="file" name="image_file"><br>  
+      <input class="btn btn-success" type="submit" value="Upload">
+    </form>
+  </div>
+</div>
+{% endblock %}

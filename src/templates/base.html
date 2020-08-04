@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block head %} 
+    
+    {% endblock %}
+</head>
+<body > <!--You can add    style="background-image: url('static/imgs/cloud.jpg')"-->
+  
+  <div class="navbar-fixed-top topnav" id="myTopnav">
+    <a href='/' class="active navbar-brand active" style="font-size: 25px;"><b> TeXperience</b></a>
+    <a href="/trending" href="javascript:void(0)" class="navbar-item"> Trending </a>
+    {% if current_user.is_authenticated %}
+    <a href="{{ url_for('profile') }}" href="javascript:void(0)" class="navbar-item"> Profile </a>
+    {% endif %}
+    {% if not current_user.is_authenticated %}
+    <a href="{{ url_for('login') }}" class="navbar-item">
+        Login
+    </a>
+    <a href="{{ url_for('signup') }}" class="navbar-item">
+        Signup
+    </a>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <a href="{{ url_for('logout') }}" class="navbar-item" style="float: right;">
+        Logout
+    </a>
+    {% endif %}
+    <a style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<br><br><br>
+{% block body %}  {% endblock %}
+  
+  <br>
+   </body>
+
+<footer class="container-fluid text-center">
+  {% block footer%}  {% endblock %}
+</footer>
+</html>

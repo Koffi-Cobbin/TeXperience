@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block head %} 
+<title>Profile</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Profile.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- You can add other css links here-->
+<div class="container">
+  <!-- Profile Page editing -->
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+      {% if profile_image %}
+        <img src="data:image/png;base64, {{ profile_image }}" class="is-profile-pic"  alt="Dummy_img" style="inline">
+      {% else %}
+        <img src="static/imgs/idea.jpg" class="is-profile-pic"  alt="Dummy_img" style="inline">
+      {% endif %}
+        <h3 class="title" style="float: right"><small> &nbsp Welcome, {{ user.name }}! &nbsp </small></h3> 
+        <div class="containers">
+          <h2>{{ user.name }}</h2>
+          <p><a href="/edit_profile"><button class="button">Edit Profile</button></a></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-8 divisions" style="background-image: url(static/imgs/1.jpg); height: 190px;">
+        <div class="inline" style="float: right;">
+          <a style="float: right; margin-left: 5px; margin-top: 5px;" class="btn btn-success" href="/posts/new/{{ user.id }}">+New Post</a>
+          <a style="float: right; margin-top: 5px;" class="btn btn-success" href="/user_posts/{{ user.author_id }}">Posts</a>
+        </div>
+    </div>
+  </div>
+  <!-- End of the edit profile row -->
+  <hr>
+
+<!-- Recent Post Section -->
+  <div>   
+  {% set cnt = [0] %}
+  {% for post in posts[:3:-1] %}
+
+  <div class="row">
+<!-- If first post or the most recent post, then add ADDS -->
+      {% if cnt[0] == 0 %}
+      <div class="col-sm-2 sidenav">
+        <p><a href="#">Link</a></p>
+        <p><a href="#">Link</a></p>
+        <p><a href="#">Link</a></p>
+        <div class="well">
+          <p>ADS</p>
+        </div>
+        <div class="well">
+          <p>ADS</p>
+        </div>
+      </div>
+      {% endif %}
+<!-- If first post or the most recent post, then add the Main Heading and post in a col-sm-7  -->
+      {% if cnt[0] == 0 %}
+      <div class="col-sm-7 article-bg">
+        <h1 style="display: inline;"><small>RECENT POSTS</small></h1> 
+      {% else %}
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-7 article-bg">
+      {% endif %}
+      
+        <h2 class="subtitle">{{ post.title }}</h2>
+        {% if post.author %}
+            <small><span class="glyphicon glyphicon-time"></span><strong>Written by {{ post.author }} on {{ post.date_posted }}</strong></small>
+            <br>
+        {% else %}
+            <small>Written by Unknown on {{ post.date_posted }}</small>
+            <br>
+        {% endif %}
+        <br>
+        <p style="white-space: pre-wrap; font-size: medium; font-family: sans-serif;">{{ post.content[:500] }} ...</p>
+        <hr color="#A9A9A9" style="height: 3px;">
+      </div>
+<!-- If first post or the most recent post, then add close the col-7 and ADDS   -->      
+        {% if cnt[0] == 0 %}
+        <div class="col-sm-2 sidenav">
+          <div class="well">
+            <p>ADS</p>
+          </div>
+          <div class="well">
+            <p>ADS</p>
+          </div>
+         </div>
+         {% if cnt.append(cnt.pop() + 1) %}{% endif %}
+         {% endif %}
+      </div> <!-- End of row -->
+      {% endfor %}
+
+    <hr>
+    </div>
+ </div> 
+{% endblock %}
+ 
+{% block footer %}
+<div class="container footer">
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Contact us and we'll get back to you within 24 hours.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> Accra, Ghana</p>
+      <p><span class="glyphicon glyphicon-phone"></span> +233 501459183</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+    </div>
+    <div class="col-sm-7">
+      <a href="/delete_user/{{ user.author_id }}" class="navbar-item">
+        Del_Account
+        </a>
+    </div>
+    </div>
+  <div class="copyright">
+    <p> &copy; 2020 All rights reserved.</p>
+    </div>
+    </div>
+{% endblock%}
+
+
+
+
+
+
+
+ 
+     
+
+
+
+
+
+
+
+  
+
+

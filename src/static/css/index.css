@@ -1,0 +1,12 @@
+body{
+  background-image: url('/static/imgs/oldtech1.jpg');
+  height: 100vh;
+  background-size: cover;
+}
+.bg-image{
+  filter: blur(5px);
+}
+
+.my_profile_pic {
+  padding: 10px;
+}

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Trendingposts/readmore</title>
+ {% endblock %}
+
+{% block body %} 
+<div class="container">
+<div class="row" id="myPage" >
+    <div class="col-sm-1">
+
+        </div>
+    <div class="col-sm-10">
+        <h4><small>RECENT POSTS</small></h4>
+        {% if post %}
+        <article class="article-bg">
+            <h2 class="subtitle">{{ post.title }}</h2>
+            {% if post.author %}
+                <small><strong>Written by {{ post.author }} on {{ post.date_posted }}</strong></small><br>
+            {% else %}
+                <small>Written by Unknown on {{ post.date_posted }}</small><br>
+            {% endif %}
+
+            {% if post_image %}
+            <div class="post_image" style="background-image: url('data:image/png;base64, {{ post_image[0] }}');">
+                <div class="top-left"> ( *..* ) </div>
+            </div>
+            {% endif %}
+
+            <span class="label label-primary">{{ post.category }}</span> &nbsp <span class="badge"> {{ post.likes }} </span><strong> Views</strong><br>
+            <br>
+            <p style="white-space: pre-wrap; font-size: medium; font-family: sans-serif;"> {{ post.content }} </p>
+            <a style="margin-top: 5px;" class="btn btn-primary btn-sm" href='/like_post/{{ post.id }}'>
+                <span class="glyphicon glyphicon-thumbs-up"></span> Like </a> &nbsp <span class="badge"> {{ post.likes }} </span><strong> Likes</strong><br>
+            <hr>
+            <a href="#"><span>View more posts</span><br></a>
+        </article>
+        {% endif %}
+        <br> 
+        <h4>Leave a Comment:</h4>
+        <form action="/comment/{{ post.id }}" role="form" method="POST">
+            <div class="form-group">
+                <textarea class="form-control" name='content' rows="2" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <br><br>
+        
+        <p><span class="badge">{{ total_comments }}</span> Comments:</p><br>
+
+        <div class="row">
+            <div class="col-sm-12">
+            {% if comments %}
+            <div class="panel panel-default">
+            <div class="panel-body">
+                {% set cnt = [0] %} 
+                {% for comment in comments %}
+                <div>
+                    <div class="col-sm-2 text-center">
+                        <img src="/static/imgs/idea.jpg" class="img-circle" alt="Avatar">
+                        <br><br><br><br><br>
+                    </div>
+                    <div class="col-sm-10">
+                        <h4>{{ comment.user.name }}<small></small></h4>
+                        <p> {{ comment.content }} </p>
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                        </button> 
+                        <button type="button" class="btn btn-warning btn-sm">
+                            <span class="glyphicon glyphicon-comment"></span> comment
+                        </button>
+                
+                        <p><span class="badge"> 1 </span> Comment:</p><br>
+                        <div class="row">
+                        <div class="col-sm-2 text-center">
+                            <img src="/static/imgs/profile_img.jpg" class="img-circle" alt="Avatar">
+                        </div>
+                        <div class="col-xs-10">
+                            <h4>Anonymous </h4>
+                            <p>WOW! Very educative </p>
+                            <br>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                {% if cnt.append(cnt.pop() + 1) %}{% endif %}
+                {% endfor %}
+             
+            </div>
+            </div>
+            {% endif %}
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="col-sm-1">
+
+    </div>
+</div>  <!-- End of main row -->
+</div>
+
+ {% endblock %}
+ 
+{% block footer %}
+<div class="footer text-center">
+    <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up">Back to Top</span>
+    </a><br><br>
+    <div id="myDIV">
+        <button id="footer_btn" class="btn current_btn">1</button>
+        <button id="footer_btn" class="btn">2</button>
+        <button id="footer_btn" class="btn">3</button>
+        <button id="footer_btn" class="btn">4</button>
+        <button id="footer_btn" class="btn">5</button>
+    </div>
+    <hr>
+    
+    <div class="copyright">
+        <p> Made By <a href="https://www.PheelTech.com" title="Visit MywebPage">www.PheelTech.com</a>  &copy; 2020 All rights reserved.</p>
+    </div>
+</div>
+{% endblock%}

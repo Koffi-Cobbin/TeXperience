@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+<!-- You can add other css links here-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+ {% endblock %}
+
+ {% block body %}
+ <div class="container">
+ <div class="jumbotron" style="border-bottom-left-radius: 25%; border-top-right-radius: 20%;">
+    <div style="padding: 0px 8px;">
+        <h2><strong> Welcome To TeXperience</strong></h2>
+        <p> All it takes is a word to make one's day. </p>
+        <p> This is a platform for individuals to inspire the whole world through writing. 
+          This is the best place for Poets, Motivational Writers and Speakers, as well as Bloggers. </p>
+        <p> Through Text, we inspire the whole world!. We utilize the power in words to create a change.</p>
+        <p style="text-align: right;"><small> Nothing succeeds like success! (:</small> </p>
+        <a class="btn btn-primary" href="/posts" role="button" &raquo; style="float: right;">Go To Posts</a>
+        <div class="my_profile_pic">
+            <img src="static/imgs/me.jpg" class="is-profile-pic"> <!-- <span>Koffi Cobbinson Snr.</span> --> 
+            <p><small><strong>&nbsp Koffi Cobbinson Snr.</strong></small></p>
+            </div> 
+    </div>
+ </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class=" footer">
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Contact us and we'll get back to you within 24 hours.</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span> Accra, Ghana</p>
+    </div>
+    <div class="col-sm-7">
+        <p><span class="glyphicon glyphicon-phone"></span> +233 501459183</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+    </div>
+    </div>
+  <div class="copyright">
+    <p> Made By <a href="https://www.PheelTech.com" title="Visit MywebPage">www.PheelTech.com</a>  &copy; 2020 All rights reserved.</p>
+    </div>
+    </div>
+{% endblock%}

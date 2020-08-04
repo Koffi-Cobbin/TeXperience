@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title class="container">New Posts</title>
+<style>
+  body{
+    background-image: linear-gradient(to right, #42275a, #734b6d);
+  }
+</style>
+ {% endblock %}
+
+{% block body %}
+<div class="container" style="background-color: white; border-radius: 5px;">
+    <h2>Create new Blog Post:</h2>
+    <hr>
+    <form action="/posts/new/{{ user.id }}" method="POST" enctype = "multipart/form-data">
+        <label for="content">Title</label> 
+        <input class="form-control" type="text" name='title' id='title' placeholder="Enter Title" aria-label="Enter Title">
+        <br>
+        <div class="row" style="inline">
+            <div class="col-sm-6">
+                <label for="content">Author</label>
+                <input class="form-control" type="text" name='author' id='author' value="{{user.name}}" 
+                placeholder="{{user.name}}" aria-label="Enter Author">
+                 <br>
+            </div>
+            <div class="col-sm-6">
+              <label for="category">Category </label> 
+              <input class="form-control col-sm-3" type="text" placeholder="eg. food, tech, fashion..." name="category">
+              <br>
+            </div>
+          </div>
+        <label for="content">Post</label>
+        <textarea class="form-control" name="content" id="content" placeholder="Enter Content" aria-label="Enter Content" rows="3"></textarea>
+        <br>
+        <label>Select a Post Image to upload: </label>
+        <input type="file" name="image_file"><br>  
+        <input class="btn btn-success" type="submit" value="POST">
+    </form>
+    <hr>
+</div>
+{% endblock %}

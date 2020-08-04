@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>SignUp</title>
+<!-- You can add other css links here-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+ {% endblock %}
+
+{% block body %}
+<br>
+<div class="form-size container">
+    <div class="fcontainer">
+        <h3 style="text-align: center;">SignUp</h3>
+        <form action="/signup" method="post">
+            <h1 class="title">
+                <i class="fa fa-user"> </i>
+            </h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}.
+                </div>
+            {% endif %}
+            {% endwith %}
+
+            <div class="form-group">
+                <label for="username">Username</label> 
+                <input class="form-control" type="text" placeholder="Username" name="username" value="{{
+                request.form.username }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label> 
+                <input class="form-control" type="email" placeholder="example@gmail.com" name="email" value="{{
+                    request.form.email }}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label> 
+                <input class="form-control" type="password" placeholder="password" name="password" value="{{
+                    request.form.password }}">
+            </div>
+            <div style="text-align: right;">
+                <a href="{{ url_for('login') }}">Already have an account?</a>
+            </div>      
+            <button> SignUp </button>   
+        </form>
+    </div>
+    {% if error %}
+        <br>
+        <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+  </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
