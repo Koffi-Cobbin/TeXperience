@@ -4,13 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
-#----------------------------------------------------------------------
 from werkzeug.utils import secure_filename
 import base64, os
  
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
-app.config['SECRET_KEY'] = 'password'
+app.config.from_object('src.config')
+app.secret_key = os.environ.get("SECRETE_KEY")
 db = SQLAlchemy(app)
 
 
@@ -63,7 +63,12 @@ class Comment(db.Model):
 
     def __repr__(self):
         return '<Comment %r>' % self.id
-
+     
+     
+@app.before_first_request
+def init_db():
+    db.create_all()
+  
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -301,6 +306,3 @@ def comment(blog_id):
     db.session.add(new_comment)
     db.session.commit()
     return redirect(url_for('readmore', post_id=blog_id)) 
-
-if __name__ == "__main__":
-    app.run(debug = True)
