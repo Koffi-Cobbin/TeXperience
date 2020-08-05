@@ -65,9 +65,9 @@ class Comment(db.Model):
         return '<Comment %r>' % self.id
      
      
-@app.before_first_request
-def init_db():
-    db.create_all()
+#@app.before_first_request
+#def init_db():
+#    db.create_all()
   
 @app.route('/')
 def index():
