@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import base64, os
  
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLITE_URI") #'sqlite:///posts.db'
 app.config.from_object('src.config')
 app.secret_key = os.environ.get("SECRETE_KEY")
 db = SQLAlchemy(app)
